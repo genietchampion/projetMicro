@@ -1,0 +1,10 @@
+//Initialise l'écran LCD
+initialise();
+
+//Effacer l'écran
+efface();
+
+//Pose un marqueur pour écrire
+marqueur(posX,posY);
+
+//
