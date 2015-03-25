@@ -49,5 +49,11 @@ void emitMessage(typeMessage * tableau);
 ** SON
 ****************/
 
+//TODO by Etienne et Bichonche
 
 
+/***************
+** Gestion de la distance
+****************/
+
+//TODO by Romain
