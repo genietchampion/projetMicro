@@ -7,4 +7,11 @@ efface();
 //Afficher des caractères à l'écran à partir de la position donnée en argument.
 affiche(posX,posY,string/character);
 
+//Positionne un marqueur
+marqueur(x,y)
 
+//Active le marqueur
+marqueurActive();
+
+//Desactive le marqueur
+marqueurDesactive();
