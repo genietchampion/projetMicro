@@ -1,16 +1,21 @@
-/*
-	Code Hexadécimal :
-	0xa1 x y => se positionne à la position x y.
-	0xa2 string 0 => Ecrit une chaîne de caractère, 0 est le code de fin.
-	0xa3 0x01 => Efface l'écran.
-*/
 
-void printScreen(char * string, char posX, char posY) {
-	printf("%c%c%c",0xa1,posX,posY); //Se positionne à la position voulue.
-	printf("%c%s %c",0xa2,string,0); //Ecrit la chaîne de caractère voulue.
+//UART_SendByte(LPC_UART_TypeDef* UARTx, uint8_t Data)
+
+void initScreen(){
+	UART_SendByte(UART0, 0xA0);
 }
 
-void clearScreen() {
-	printf("%c%c",0xa3,0x01);
+void printScreen(char * message, char posX, char posY){
+	//Se positionne pour écrire
+	UART_SendByte(UART0, 0xA1);
+	UART_SendByte(UART0, posX);
+	UART_SendByte(UART0, posY);
+	//Ecrit
+	UART_SendByte(UART0, message.dir);
+	UART_SendByte(UART0, message.valeur);
 }
 
+void clearScreen(){
+	UART_SendByte(UART0, 0xA3);
+	UART_SendByte(UART0, 0x01);
+}
