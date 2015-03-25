@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 void initScreen();
-void afficheEcran(char posX, char posY, char * string);
-void effaceEcran();
+void printScreen(char * message, char posX, char posY);
+void clearScreen();
