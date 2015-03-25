@@ -10,7 +10,7 @@ typedef struct message
 
 typeMessage tabMessage[8];
 
-//variables globales de deplacement
+//variables globales de déplacement
 int speed, distance, angle;
 /**************************
 **	Deplacements				**
@@ -34,13 +34,13 @@ void printScreen(char * message, char posX, char posY);
 void clearScreen();
 
 /*********************
-** emission IR 
+** Émission IR 
 *********************/
 
 void emitMessage(typeMessage * tableau);
 
 /****************
-** reception IR
+** Réception IR
 ****************/
 
 //TODO Etienne, à toi de remplir cette partie
