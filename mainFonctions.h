@@ -56,7 +56,5 @@ void emitMessage(typeMessage * tableau);
 ** Gestion de la distance
 ****************/
 
-float chargement (void); // permet de convertir le signal du laser
-float distance (void); // définit la distance avant l'obstacle situé à l'avant
-int arrêt obligatoire (int d); // Nécesaire pour rester dans le domaine de bijectivité de la fonction (sinon on peut pas donner la distance)
+int arret_obligatoire (int d); // Nécesaire pour rester dans le domaine de bijectivité de la fonction (sinon on peut pas donner la distance)
 bool obstaclecote (void); // revoie true si un obstacle est situé sur un côté
