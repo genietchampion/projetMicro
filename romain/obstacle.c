@@ -18,7 +18,7 @@ function distance (void)
 {
   int d = 0;
   int v = chargement; // chargement des données du laser
-  d = v / 0,26; // inversion de la fonction
+  d = v / 0.26; // inversion de la fonction
   return d;
 }
 
