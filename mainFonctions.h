@@ -55,5 +55,7 @@ void emitMessage(typeMessage * tableau);
 /***************
 ** Gestion de la distance
 ****************/
-
-//TODO by Romain
+function chargement (void) // Charge la tension lié à  la distance de l'obstacle
+function distance (void) // Transforme la fonction en distance (en cm)
+function arret_obligatoire (int d) // Dis si le robot est trop près de l'obstacle (domaine de non bijectivité de la fonction de tension en fonction de la distance)
+function obstacle_cote (void) // Renvoie true si un obstacle est situé sur le coté
