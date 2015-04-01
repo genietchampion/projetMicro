@@ -56,4 +56,6 @@ void emitMessage(typeMessage * tableau);
 ** Gestion de la distance
 ****************/
 
-//TODO by Romain
+float distance (void) // définit la distance avant l'obstacle situé à l'avant
+int arrêt obligatoire (int d) // Nécesaire pour rester dans le domaine de bijectivité de la fonction
+bool obstaclecote (void) // revoie true si un obstacle est situé sur un côté
