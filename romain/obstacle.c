@@ -5,27 +5,31 @@
 GPIO_Registres *pGPIO0; // Pointeur sur la structure du GPIO0
 GPIO_Registres *pGPIO1; // Pointeur sur la structure du GPIO1
 
-function chargement (void)
+uint16_t chargement (void)
 {
-  float v;
+ uint16_t v;
   // On charge les données en entrée sur le GPIO sur le P0.23 dans la valeur v
-  v = pGPIO0 -> FIOPIN;  // recopie de p0.23 dans v
+  (PINSEL1) >> 14 = 1;
+  (PINSEL1) >> 15 = 0;
+  // On se place en mode AD0.0
+ // recopie de p0.23 dans v
+  v = ADC_ChannelGetData(ADC0.0,);
   // On renvoie la valeur du voltage en fonction de la luminosité
   return v;
 }
 
-function distance (void)
+float distance (void)
 {
-  int d = 0;
-  int v = chargement; // chargement des données du laser
+  float d = 0;
+  uint16 v = chargement; // chargement des données du laser
   d = v / 0.26; // inversion de la fonction
   return d;
 }
 
-function arret_obligatoire (d)
+int arret_obligatoire (float d)
 {
   int a = 0;
-  if (d < 10) 
+  if (d < 15) 
     { 
       a = 2; // On est trop pres. On doit s'arrêter
     }
@@ -43,23 +47,59 @@ function arret_obligatoire (d)
   return a;
 }
 
-function obstacle_cote (void)
+void arreturgence (int a)
+{
+  if (a = 2)
+    then
+      {
+	stop();
+	AfficheEcran(0,0,"reculez");
+      }
+  else
+    {
+    }
+}
+
+boolean obstacle_cote (void)
 {
   boolean b;
   int d1;
   int d2;
   //chargemet des données des microrupteurs depuis P1.11 et P1.21
-  d1 = (PGPIO1 -> FIOPIN) >> 8; // copie de p1.11 sur d1
-  d2 = (PGPIO1 -> FIOPIN) >> 14; // copie de p1.12 sur d2
+  d1 = (PGPIO1 -> FIOPIN) >> 8; // copie de p1.11 sur d1 (si 1 le bouton est poussé)
+  d2 = (PGPIO1 -> FIOPIN) >> 14;// copie de p1.21 sur d2 (si 1 le bouton est poussé)
   // Si un des deux boutons est poussé, on envoie un booléen true. Sinon on renvoie false.
-  if (d1 /= 0) then {b = true;}
+  if (d1 /= 0) then 
+		 {
+		   b = true;
+		 }
   else 
     {
-      if (d2 /=0) then {b = true;}
+      if (d2 /= 0) then 
+		    {
+		      b = true;
+		    }
       else
 	{
 	  b = false;
 	}
     }
   return b;
+}
+
+void detection (void)
+{
+  /*On vient de lancer la detection.*/
+  /* On mesure la distance et on vérifie qu'aucun obstacle ne se trouve sur le côté*/
+  float d = distance ();
+  boolean b = obstacle_cote ();
+  arreturgence (arret_obligatoire (d));
+  if (b) 
+    then 
+      {
+	AfficheEcran(0,0,"Obstacle sur le côté");
+      }
+  else 
+    {
+    }
 }
